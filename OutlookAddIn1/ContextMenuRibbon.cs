@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Office = Microsoft.Office.Core;
+using Word = Microsoft.Office.Interop.Word;
 
 // TODO:  Follow these steps to enable the Ribbon (XML) item:
 
@@ -30,11 +32,11 @@ using Office = Microsoft.Office.Core;
 namespace OutlookAddIn1
 {
     [ComVisible(true)]
-    public class Ribbon1 : Office.IRibbonExtensibility
+    public class ContextMenuRibbon : Office.IRibbonExtensibility
     {
         private Office.IRibbonUI ribbon;
 
-        public Ribbon1()
+        public ContextMenuRibbon()
         {
         }
 
@@ -42,7 +44,7 @@ namespace OutlookAddIn1
 
         public string GetCustomUI(string ribbonID)
         {
-            return GetResourceText("OutlookAddIn1.Ribbon1.xml");
+            return GetResourceText("OutlookAddIn1.ContextMenuRibbon.xml");
         }
 
         #endregion
@@ -51,10 +53,8 @@ namespace OutlookAddIn1
         //Create callback methods here. For more information about adding callback methods, visit https://go.microsoft.com/fwlink/?LinkID=271226
         public void GetButtonID(Office.IRibbonControl control)
         {
-            MessageBox.Show("Start Chatting!");
-
-            //Microsoft.Office.Interop.Word.Range currentRange = Globals.ThisAddIn.Application.Selection.Range;
-            //currentRange.Text = "This text was added by the context menu named My Button.";
+            var sel = Globals.ThisAddIn.selection();
+            sel.InsertAfter("{ResponseFromChatGPT}");
         }
 
         public void Ribbon_Load(Office.IRibbonUI ribbonUI)
