@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+﻿using Microsoft.Office.Interop.Outlook;
+using System.Net;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Word = Microsoft.Office.Interop.Word;
-using Office = Microsoft.Office.Core;
-using Microsoft.Office.Interop.Outlook;
-using System.Windows.Forms;
-using System.Net;
-using Microsoft.Office.Interop.Word;
 
-namespace OutlookAddIn1
+namespace MailMind.OutlookAddIn
 {
     public partial class ThisAddIn
     {

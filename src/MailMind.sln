@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookAddIn1", "OutlookAddIn1\OutlookAddIn1.csproj", "{FBA6B40E-BA94-4A36-B172-9D46180DDA32}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Outlook", "Outlook", "{CF06EF7F-9B90-4221-AA3E-C176BCA8287B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{26DF99A2-F2C8-4BB7-B757-CA09C736F60B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailMind.OutlookAddIn", "MailMind.OutlookAddIn\MailMind.OutlookAddIn.csproj", "{FBA6B40E-BA94-4A36-B172-9D46180DDA32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +22,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FBA6B40E-BA94-4A36-B172-9D46180DDA32} = {CF06EF7F-9B90-4221-AA3E-C176BCA8287B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37D8EDC2-E94C-436D-9F81-10DC7D38FFCA}
