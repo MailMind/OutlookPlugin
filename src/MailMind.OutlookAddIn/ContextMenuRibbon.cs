@@ -19,7 +19,7 @@ namespace MailMind.OutlookAddIn
 
         public string GetCustomUI(string ribbonID)
         {
-            return GetResourceText("OutlookAddIn1.ContextMenuRibbon.xml");
+            return GetResourceText("MailMind.OutlookAddIn.ContextMenuRibbon.xml");
         }
 
         #endregion
