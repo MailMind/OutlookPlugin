@@ -1,17 +1,22 @@
-﻿using System;
+﻿using MailMind.OutlookAddIn.Dialogs;
+using MailMind.OutlookAddIn.Resources;
+using System;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Office = Microsoft.Office.Core;
 
-namespace MailMind.OutlookAddIn
+namespace MailMind.OutlookAddIn.UI
 {
     [ComVisible(true)]
-    public class ContextMenuRibbon : Office.IRibbonExtensibility
+    public class RibbonButton : Office.IRibbonExtensibility
     {
-        private Office.IRibbonUI Ribbon { get; set; }
+        private Office.IRibbonUI RibbonUI { get; set; }
 
-        public ContextMenuRibbon()
+        private const string ComposeWindowRibbonId = "Microsoft.Outlook.Mail.Compose";
+
+        public RibbonButton()
         {
         }
 
@@ -19,21 +24,35 @@ namespace MailMind.OutlookAddIn
 
         public string GetCustomUI(string ribbonID)
         {
-            return GetResourceText("MailMind.OutlookAddIn.ContextMenuRibbon.xml");
+
+            if (ribbonID == ComposeWindowRibbonId)
+            {
+                return GetResourceText("MailMind.OutlookAddIn.UI.RibbonButton.xml");
+            }
+            return null;
+        }
+
+
+        public stdole.IPictureDisp GetGenerateButtonIcon(Office.IRibbonControl _)
+        {
+            var buttonIcon = (Image)ImageResource.generate_email_button_icon;
+            return Util.IconConverter.GetIPictureDispFromImage(buttonIcon);
         }
 
         #endregion
 
         #region Ribbon Callbacks
-        public void GetButtonID(Office.IRibbonControl control)
-        {
-            var sel = Globals.ThisAddIn.selection();
-            sel.InsertAfter("{ResponseFromChatGPT}");
-        }
 
         public void Ribbon_Load(Office.IRibbonUI ribbonUI)
         {
-            Ribbon = ribbonUI;
+            RibbonUI = ribbonUI;
+
+        }
+
+        public void OpenMailGenerationDialog(Office.IRibbonControl control)
+        {
+            var emailGenerationDialog = new EmailGenerationDialog();
+            emailGenerationDialog.ShowDialog();
         }
 
         #endregion

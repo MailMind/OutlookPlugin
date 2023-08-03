@@ -1,0 +1,44 @@
+﻿<Window x:Class="MailMind.OutlookAddIn.Dialogs.EmailGenerationDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MailMind.OutlookAddIn.Dialogs"
+             mc:Ignorable="d" 
+             WindowStartupLocation="CenterScreen" Title="MailMind Email generator"
+             Height="400" Width="600" ResizeMode="CanResizeWithGrip"
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label FontSize="16" Grid.Row="0">MailMind Email generator</Label>
+        <TextBox Grid.Row="1" Name="EmailContentTextBox" Margin="0 5" FontSize="14"  >
+        </TextBox>
+        <TextBlock Grid.Row="1" FontSize="14"  IsHitTestVisible="False" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Foreground="DarkGray" TextWrapping="Wrap">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=EmailContentTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+            Enter email content in term of bullet points, something similar to the following example:
+            <LineBreak></LineBreak>
+            - Email to my manager Adam (Formal email)
+            <LineBreak></LineBreak>
+            - Inform them that the new project will start on the 5th of December next year
+            <LineBreak></LineBreak>
+            - Ask for his opinion about possible review day for the current plan
+        </TextBlock>
+        <TextBox Grid.Row="2" Name="GenerateEmailTextBox" Margin="0 5" FontSize="16"  >
+        </TextBox>
+        <Button Grid.Row="3">Generate Email</Button>
+    </Grid>
+</Window>
